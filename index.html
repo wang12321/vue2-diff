@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--<script src="mysnabbdom/h.js" type="module"></script>-->
+</head>
+<body>
+<div id="content"></div>
+姓名：<span type="text" class='name'></span>
+mim： <input type="text" class='pass' oninput="change(event)">
+
+</body>
+<script type="module">
+    import h  from './mysnabbdom/h.js';
+    import patch  from './mysnabbdom/patch.js';
+
+    let a = h('ul',{},[
+        h('li',{key:'1'},'A'),
+        h('li',{key:'2'},'B'),
+        h('li',{key:'3'},'C'),
+        h('li',{key:'4'},'D'),
+        h('li',{key:'5'},'E')]);
+    const container = document.getElementById('content');
+    patch(container,a);
+
+    let a1 = h('ul',{},[
+        h('li',{key:'6'},'Q'),
+        h('li',{key:'1'},'A'),
+        h('li',{key:'2'},'B'),
+        h('li',{key:'3'},'C'),
+        h('li',{key:'4'},'D'),
+        h('li',{key:'5'},'E'),
+        h('li',{key:'7'},'T'),
+
+
+       ]);
+    patch(a,a1);
+
+</script>
+<script>
+    // h('div',{},'www')
+    // let s = '',
+    //     ss = [1,2,3,4,5]
+    // for (let i = 0,s;s=ss[i++];) {
+    //     console.log(s);
+    //
+    // }
+
+    //简单方式
+    // let dataObj = {};
+    // let el = document.querySelector('.name');
+    //
+    // Object.defineProperty(dataObj,'one',{
+    //     get:function () {
+    //         console.log('获取了')
+    //         return value;
+    //
+    //     },
+    //     set:function (newValue) {
+    //         console.log('设置了')
+    //         // Dep.trigger(tag,newValue)
+    //         el.innerHTML = newValue;
+    //
+    //     }
+    // })
+
+    //vue 响应式
+    // function change(t){
+    //     console.log(t.target.value)
+    //     dataObj.one = t.target.value
+    // }
+    // let Dep = {
+    //     clientList:{},
+    //     listen:function (key,fn) {
+    //         console.log(key);
+    //         console.log(fn);
+    //
+    //         (this.clientList[key] || (this.clientList[key] = [])).push(fn)
+    //         console.log(this.clientList);
+    //
+    //     },
+    //     trigger:function () {
+    //         console.log(arguments);
+    //
+    //         let key = Array.prototype.shift.call(arguments),
+    //             fns = this.clientList[key];
+    //         console.log(arguments);
+    //
+    //         console.log(key,fns);
+    //
+    //         if(!fns || fns.length === 0){
+    //             return false
+    //         }
+    //
+    //         for (let i = 0,fn;fn=fns[i++];) {
+    //             console.log(fn);
+    //             console.log(arguments);
+    //             // fn()
+    //             fn.apply(this,arguments);
+    //         }
+    //
+    //     }
+    // }
+    // let dataHijack = function ({data,tag,datakey,selector}) {
+    //     let value = '',
+    //         el = document.querySelector(selector)
+    //     Object.defineProperty(data,datakey,{
+    //         get:function () {
+    //             console.log('获取了')
+    //             return value;
+    //
+    //         },
+    //         set:function (newValue) {
+    //             console.log('设置了')
+    //             Dep.trigger(tag,newValue)
+    //
+    //         }
+    //     })
+    //     Dep.listen(tag,function (text) {
+    //         console.log(11111111111111);
+    //         console.log(text);
+    //         console.log(arguments);
+    //
+    //
+    //         el.innerHTML = text;
+    //     })
+    //
+    // }
+    //
+    //
+    // let dataObj = {};
+    // dataHijack({
+    //     data:dataObj,
+    //     tag:'view-1',
+    //     datakey:'one',
+    //     selector:'.name'
+    // })
+    // dataObj.one = '123'
+
+
+
+</script>
+</html>
